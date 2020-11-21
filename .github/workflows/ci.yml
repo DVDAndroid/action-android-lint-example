@@ -23,7 +23,7 @@ jobs:
         run: ./gradlew build
 
       - name: Run Android Lint
-        uses: dvdandroid/action-android-lint@v1
+        uses: dvdandroid/action-android-lint@v1.2
         with:
           github_token: ${{ secrets.TOKEN_GITHUB }}
           lint_xml_file: app/build/reports/lint-results.xml
