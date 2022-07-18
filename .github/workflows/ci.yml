@@ -1,6 +1,6 @@
 name: CI
 
-on: [push, pull_request]
+on: [push, pull_request, workflow_dispatch]
 
 jobs:
   build:
@@ -9,12 +9,13 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@master
+        uses: actions/checkout@v3
 
       - name: Setup JDK 8
-        uses: actions/setup-java@master
+        uses: actions/setup-java@v3
         with:
-          java-version: 8
+          java-version: 11
+          distribution: 'corretto'
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
@@ -26,4 +27,4 @@ jobs:
         uses: dvdandroid/action-android-lint@v1.2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          lint_xml_file: app/build/reports/lint-results.xml
+          lint_xml_file: app/build/reports/lint-results-debug.xml
